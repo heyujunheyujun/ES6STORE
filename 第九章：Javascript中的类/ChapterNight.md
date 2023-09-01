@@ -65,3 +65,20 @@ let obj = new Rectangle(3); //true<br>
 注意：派生类调用基类的构造函数，new.target指向的是当前派生类。<br>
 
 因为类必须通过new关键字才能调用，所以在类的构造函数中，new.target属性永远不会是undefined；<br>
+
+
+1.typeof User === 'function'<br>
+2.User类内部有[[isClassConstrctor]]，只能通过new关键字调用，如果不是的话会报错<br>
+3.new User的时候就初始化了constructor构造器，constructor不是必须的，要对实例进行一些初始化操作时才写；<br>
+4.每个new出来的User实例对象的constructor里面的属性都是唯一的，会给分配内存<br>
+5.User类里面定义的方法是挂载到User.prototype原型里的，是所有实例对象共享<br>
+6.User类的方法是不可枚举的，即不会被for..in遍历出来，而传统的构造函数的原型是可被枚举的。<br>
+7.class类里面是自动启用严格模式的<br>
+8.类的方法调用可能会有this丢失的问题，可以用箭头函数包裹一下做处理<br>
+9.类的extends关键字就是继承，指向更深的原型<br>
+10.super关键字相当于this.__proto__，在子类的方法中可以调用父类的方法，实现多态。也可在子类的constructor中super()继承父类的constructor属性。super不能调用箭头函数定义的方法<br>
+11.static关键字是只有类本身才能访问，new出来的实例对象是无法访问的。是属于类自身的。<br>
+12.子类可以继承父类的static的方法和属性，但同样是只有子类本身才能使用，实例对象无法访问。<br>
+13.子类可以继承父类的protected的方法和属性<br>
+14.private的方法和属性不能被继承，只能内部使用<br>
+15.要实现子类继承多个类，可以使用Object,assign()方法合并<br>
